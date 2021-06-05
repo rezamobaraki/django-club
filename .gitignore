@@ -120,6 +120,8 @@ celerybeat.pid
 
 # Environments
 # .env
+DjangoClub/env.py
+.env
 .env/
 .venv/
 env/

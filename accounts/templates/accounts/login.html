@@ -3,6 +3,7 @@
 
 {% block content %}
     <form action="" method="post" class="col-md-5">
+    {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="btn btn-primary">
     </form>
