@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from . import env
+from DjangoClub import env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # local apps
+
+    # Local apps
     'accounts.apps.AccountsConfig',
     'core.apps.CoreConfig',
+
     # Third-party apps
     'storages'
 
@@ -135,3 +137,4 @@ AWS_STORAGE_BUCKET_NAME = env.AWS_STORAGE_BUCKET_NAME
 AWS_SERVICE_NAME = env.AWS_SERVICE_NAME
 AWS_S3_ENDPOINT_URL = env.AWS_S3_ENDPOINT_URL
 AWS_S3_FILE_OVERWRITE = env.AWS_S3_FILE_OVERWRITE
+AWS_LOCAL_STORAGE = f"{BASE_DIR}/aws/"

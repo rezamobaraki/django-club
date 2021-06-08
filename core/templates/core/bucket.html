@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title-head %}
+    Bucket Page
+{% endblock %}
+
+{% block content %}
+    <table class="table table-dark text-center">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Size</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in objects %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ object.Key }}</td>
+                <td>{{ object.Size }}</td>
+                <td>
+                    <a href="{% url 'core:bucket_download' object.Key %}" class="btn btn-primary btn-sm">download</a>
+                    <a href="{% url 'core:bucket_delete' object.Key %}" class="btn btn-danger btn-sm">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
