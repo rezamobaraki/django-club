@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load extra_filters %}
 
 {% block title-head %}
     Bucket Page
@@ -19,7 +20,7 @@
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ object.Key }}</td>
-                <td>{{ object.Size }}</td>
+                <td>{{ object.Size | converter }}</td>
                 <td>
                     <a href="{% url 'core:bucket_download' object.Key %}" class="btn btn-primary btn-sm">download</a>
                     <a href="{% url 'core:bucket_delete' object.Key %}" class="btn btn-danger btn-sm">delete</a>

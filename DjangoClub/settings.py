@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
 
     # Third-party apps
-    'storages'
+    'storages',
+    'rest_framework'
 
 ]
 

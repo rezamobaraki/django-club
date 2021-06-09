@@ -1,13 +1,20 @@
-from django.urls import path
+from django.urls import path, include
 
-from core import views
+from core import views, api_views
 
 app_name = 'core'
+
+api_urls = [
+    path('questions/', api_views.QuestionListView.as_view()),
+    path('questions/create/', api_views.QuestionCreateView.as_view()),
+    path('questions/update/<int:pk>/', api_views.QuestionUpdateView.as_view()),
+    path('questions/delete/<int:pk>/', api_views.QuestionDeleteView.as_view()),
+]
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('bucket/', views.BucketHome.as_view(), name='bucket_home'),
     path('bucket/delete/<str:key>/', views.BucketDelete.as_view(), name='bucket_delete'),
     path('bucket/download/<str:key>/', views.BucketDownload.as_view(), name='bucket_download'),
-
+    path('api/', include(api_urls))
 ]
