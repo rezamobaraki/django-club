@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'storages',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken'
 
 ]
 
@@ -139,3 +140,9 @@ AWS_SERVICE_NAME = env.AWS_SERVICE_NAME
 AWS_S3_ENDPOINT_URL = env.AWS_S3_ENDPOINT_URL
 AWS_S3_FILE_OVERWRITE = env.AWS_S3_FILE_OVERWRITE
 AWS_LOCAL_STORAGE = f"{BASE_DIR}/aws/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
