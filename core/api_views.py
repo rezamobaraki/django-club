@@ -1,9 +1,12 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 from core.models import Question
 from core.serializers import QuestionSerializer, AnswerSerializer
 from rest_framework.response import Response
 from rest_framework import status
+
+from permission_access.permissions import IsOwnerOrReadOnly
 
 
 class QuestionListView(APIView):
@@ -18,6 +21,8 @@ class QuestionListView(APIView):
 
 
 class QuestionCreateView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def post(self, request):
         data = QuestionSerializer(data=request.data)
         if data.is_valid():
@@ -27,8 +32,11 @@ class QuestionCreateView(APIView):
 
 
 class QuestionUpdateView(APIView):
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+
     def put(self, request, pk):
         question = Question.objects.get(pk=pk)
+        self.check_object_permissions(request, question)
         serialize_data = QuestionSerializer(instance=question, data=request.data, partial=True)
         if serialize_data.is_valid():
             serialize_data.save()
@@ -37,7 +45,10 @@ class QuestionUpdateView(APIView):
 
 
 class QuestionDeleteView(APIView):
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+
     def delete(self, request, pk):
         question = Question.objects.get(pk=pk)
+        self.check_object_permissions(request,question)
         question.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
