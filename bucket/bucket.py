@@ -47,4 +47,5 @@ class Bucket:
             self.connection.download_fileobj(settings.AWS_STORAGE_BUCKET_NAME, key, f)
 
 
+
 bucket = Bucket()
