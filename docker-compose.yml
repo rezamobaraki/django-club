@@ -41,7 +41,7 @@ services:
 
   app:
     build: .
-    command: sh -c "python manage.py migrate && gunicorn A.wsgi -b 0.0.0.0:8000"
+    command: sh -c "python manage.py migrate && gunicorn DjangoClub.wsgi -b 0.0.0.0:8000"
     container_name: app
     volumes:
       - .:/code/
@@ -50,6 +50,7 @@ services:
       - rabbitmq
     expose:
       - "8000"
+    image: app-image
     networks:
       - main
     restart: on-failure
