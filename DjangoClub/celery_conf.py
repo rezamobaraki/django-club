@@ -7,7 +7,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoClub.settings')
 celery_app = Celery('DjangoClub')
 celery_app.autodiscover_tasks()
 
-celery_app.conf.broker_url = 'amqp://guest:guest@localhost'
+# celery_app.conf.broker_url = 'amqp://guest:guest@localhost'
+celery_app.conf.broker_url = 'amqp://rabbitmq'
 celery_app.conf.result_backend = 'rpc://'
 celery_app.conf.task_serialize = 'json'
 celery_app.conf.result_serializer = 'pickle'
