@@ -11,7 +11,7 @@ class TestRegistrationForm(SimpleTestCase):
         """
             Acceptance Test
         """
-        form = UserRegistrationForm(data={'username': 'mr.rezoo', 'email': 'rezoo@gmail.com', 'password': 'mr.rezoo'})
+        form = UserRegistrationForm(data={'username': 'rezamobaraki', 'email': 'reza@mobaraki.com', 'password': 'rezamobaraki'})
         self.assertTrue(form.is_valid())
 
     def test_invalid_data(self):
